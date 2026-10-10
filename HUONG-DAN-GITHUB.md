@@ -1,78 +1,190 @@
-# Hướng dẫn dùng chung project GitHub
+# Hướng dẫn kết nối và sửa project ProjectTeam4 bằng Git
 
-Git lưu lịch sử thay đổi trên máy; GitHub lưu repository trực tuyến để nhóm chia sẻ code và review. Repository public cho mọi người xem, nhưng chỉ người được cấp quyền mới đẩy thay đổi trực tiếp. Người ngoài có thể đóng góp bằng fork và pull request.
+Repository chung: https://github.com/Nguynefg/ProjectTeam4
 
 ## 1. Chuẩn bị
 
-Mỗi người tạo tài khoản GitHub riêng và cài Git từ https://git-scm.com/downloads. Mở terminal trong thư mục project. Chạy các lệnh sau và thay tên/email bằng thông tin của chính mình; nên dùng email đã liên kết với GitHub hoặc email noreply do GitHub cung cấp:
+Mỗi thành viên cài Git, tạo tài khoản GitHub riêng và chấp nhận lời mời Collaborator từ trưởng nhóm.
 
-```sh
+Mở Git Bash, khai báo thông tin của mình một lần:
+
+```bash
 git config --global user.name "Ten cua ban"
 git config --global user.email "email-cua-ban"
 ```
 
-## 2. Trưởng nhóm tạo repository
+Thay tên và email bằng thông tin thật; dùng email đã liên kết với tài khoản GitHub.
 
-Trên GitHub chọn **New repository**, đặt tên `project-nhom-github`, chọn Public hoặc Private. Khi đẩy project có sẵn, để repository trống: không thêm README, .gitignore hoặc license trên GitHub.
+Chỉ nhập các lệnh trong khung code. Không nhập dấu `$` hoặc các dòng kết quả terminal.
 
-Project mẫu đã được khởi tạo Git và có commit ban đầu. Trong thư mục project chạy (thay `TEN-TAI-KHOAN`):
+## 2. Kết nối với project chung
 
-```sh
-git remote add origin https://github.com/TEN-TAI-KHOAN/project-nhom-github.git
-git push -u origin main
-```
+### Nếu chưa có project trên máy
 
-Nếu tự làm project mới chưa có Git, chạy `git init -b main`, `git add .`, rồi `git commit -m "Tao project ban dau"` trước khi thêm remote. Khi Git yêu cầu xác thực, dùng đăng nhập qua trình duyệt/credential manager hoặc token; mật khẩu tài khoản GitHub không dùng cho thao tác Git qua HTTPS.
+Mở Git Bash trong thư mục muốn lưu project, chạy:
 
-## 3. Cho cả nhóm quyền đóng góp
-
-Chủ repository vào **Settings → Collaborators → Add people**, tìm username từng thành viên và gửi lời mời. Từng người chấp nhận lời mời trong GitHub/thông báo/email. Không chia sẻ tài khoản hoặc token giữa các thành viên.
-
-Tài liệu chính thức: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/repository-access-and-collaboration/inviting-collaborators-to-a-personal-repository
-
-## 4. Thành viên lấy project và tạo nhánh
-
-Ví dụ dưới đây dành cho thành viên A; B và C thay tên nhánh theo công việc:
-
-```sh
-git clone https://github.com/TEN-TAI-KHOAN/project-nhom-github.git
-cd project-nhom-github
-git switch -c feature/a-noi-dung
-```
-
-Sửa `index.html`, thay tên và mô tả mẫu. Mở trang để kiểm tra, rồi lưu thay đổi:
-
-```sh
+```bash
+git clone https://github.com/Nguynefg/ProjectTeam4.git
+cd ProjectTeam4
 git status
-git add index.html
-git commit -m "Them ten va mo ta nhom"
-git push -u origin feature/a-noi-dung
 ```
 
-B dùng nhánh `feature/b-giao-dien`, sửa và add `style.css`. C dùng nhánh `feature/c-loi-chao`, sửa và add `script.js`. Với mỗi công việc mới, cập nhật main rồi tạo nhánh mới.
+Lệnh `clone` tải project về máy và tự thiết lập kết nối GitHub. Chỉ cần thực hiện một lần.
 
-## 5. Tạo pull request, review và merge
+### Nếu đã có project trên máy
 
-Trên repository GitHub chọn **Pull requests → New pull request**. Chọn base `main`, compare là nhánh của mình. Ghi rõ đã sửa gì và đã kiểm tra thế nào, rồi tạo pull request. Thành viên khác đọc **Files changed**, gửi nhận xét hoặc review. Người có quyền merge chọn **Merge pull request** sau khi kiểm tra đạt.
+Đi vào đúng thư mục project. Ví dụ:
 
-Ví dụ mô tả PR của A:
+```bash
+cd "/f/Zalo Data/Phát triển phần mềm mã nguồn Mở/ProjectTeam4"
+git status
+git remote -v
+```
 
-> Thêm tên và nhiệm vụ của các thành viên vào trang giới thiệu. Đã mở index.html, kiểm tra danh sách hiển thị và nút chào hoạt động.
+Thay đường dẫn bằng vị trí project của bạn. Đường dẫn có khoảng trắng phải đặt trong dấu ngoặc kép.
 
-Tài liệu chính thức: https://docs.github.com/en/pull-requests/how-tos/create-pull-requests/creating-a-pull-request
+Nếu `git remote -v` hiển thị địa chỉ repository đúng, bạn đã kết nối thành công.
 
-## 6. Lấy bản chung mới nhất
+Nếu chưa có `origin`, chạy:
 
-Sau khi PR được merge, mỗi thành viên đảm bảo đã commit hoặc cất thay đổi đang làm trước khi chuyển nhánh:
+```bash
+git remote add origin https://github.com/Nguynefg/ProjectTeam4.git
+```
 
-```sh
+Nếu `origin` đang trỏ đến địa chỉ sai, chạy:
+
+```bash
+git remote set-url origin https://github.com/Nguynefg/ProjectTeam4.git
+```
+
+Nếu báo `not a git repository`, kiểm tra lại thư mục đang mở. Với thành viên mới, nên clone project chung thay vì khởi tạo Git trong một thư mục khác.
+
+## 3. Tạo nhanh nhánh để sửa nội dung
+
+Trước khi bắt đầu, lưu và commit công việc đang làm nếu có. Sau đó cập nhật code chung và tạo nhánh mới:
+
+```bash
 git switch main
 git pull --ff-only origin main
-git switch -c feature/cong-viec-tiep-theo
+git switch -c feature/ten-ban-sua-noi-dung
 ```
 
-Nếu có xung đột trên nhánh làm việc, lưu công việc rồi chạy `git fetch origin` và `git merge origin/main`. Mở file xung đột, thống nhất nội dung, bỏ các dấu `<<<<<<<`, `=======`, `>>>>>>>`, kiểm tra lại, `git add` các file đã sửa, commit và push. Có thể dùng `git merge --abort` để hủy lần merge đang xung đột.
+Thay `ten-ban` bằng tên thành viên. Mỗi công việc mới dùng một tên nhánh chưa tồn tại.
 
-## 7. Minh chứng nhóm dùng chung repository
+Ví dụ:
 
-Mỗi người hoàn thành PR bằng tài khoản thật. Ghi link repository, commit, PR và review vào `MINH-CHUNG-NHOM.md`. Chụp trạng thái PR đã merge và danh sách cộng tác viên sau khi mọi người chấp nhận lời mời. Chỉ có danh sách thành viên trong HTML không chứng minh được việc cộng tác.
+```bash
+git switch -c feature/an-sua-gioi-thieu
+```
+
+Nhánh riêng giúp mỗi thành viên làm việc và gửi thay đổi để nhóm kiểm tra trước khi gộp vào `main`.
+
+## 4. Sửa file và lưu thay đổi
+
+Để sửa nội dung trang, mở:
+
+```bash
+notepad index.html
+```
+
+Sửa nội dung trong Notepad, nhấn **Ctrl+S**, rồi đóng cửa sổ.
+
+Các file khác có thể mở tương tự:
+
+```bash
+notepad style.css
+```
+
+```bash
+notepad script.js
+```
+
+- `index.html`: nội dung và danh sách thành viên.
+- `style.css`: màu sắc, bố cục và giao diện.
+- `script.js`: chức năng tương tác.
+
+Kiểm tra thay đổi trước khi commit:
+
+```bash
+git status
+git diff
+```
+
+Trong kết quả `git diff`, dòng có dấu `-` là nội dung cũ, dòng có dấu `+` là nội dung mới.
+
+## 5. Commit và đẩy thay đổi lên GitHub
+
+Ví dụ sau khi sửa `index.html`:
+
+```bash
+git add index.html
+git commit -m "Cap nhat noi dung trang"
+git push -u origin feature/ten-ban-sua-noi-dung
+```
+
+Tên nhánh trong lệnh `push` phải trùng với nhánh đã tạo ở bước 3.
+
+| Lệnh | Ý nghĩa |
+| --- | --- |
+| `git add index.html` | Chọn thay đổi trong file để đưa vào commit |
+| `git commit -m "..."` | Lưu một mốc lịch sử trên máy kèm mô tả |
+| `git push -u origin ...` | Đẩy commit lên GitHub và liên kết nhánh trên máy với nhánh trực tuyến |
+
+Nếu sửa file khác, thay tên file trong lệnh `git add`. Có thể chọn nhiều file:
+
+```bash
+git add index.html style.css script.js
+```
+
+Sau lần push đầu tiên có `-u`, những lần tiếp theo trên cùng nhánh chỉ cần:
+
+```bash
+git push
+```
+
+## 6. Tạo pull request và gộp vào project chung
+
+Sau khi push:
+
+1. Mở repository trên GitHub.
+2. Chọn **Compare & pull request**, hoặc **Pull requests → New pull request**.
+3. Chọn **base: main**, **compare: nhánh của bạn**.
+4. Nhập tiêu đề và mô tả nội dung đã sửa.
+5. Chọn **Create pull request**.
+6. Nhờ thành viên khác kiểm tra và review.
+7. Người có quyền chọn **Merge pull request** khi thay đổi đã đạt yêu cầu.
+
+Nếu cần sửa thêm cho PR đang mở, tiếp tục sửa file trên cùng nhánh, commit và push. PR sẽ tự cập nhật.
+
+Sau khi merge, lấy phiên bản chung mới nhất về máy:
+
+```bash
+git switch main
+git pull --ff-only origin main
+```
+
+## 7. Xử lý lỗi thường gặp
+
+| Thông báo | Cách xử lý |
+| --- | --- |
+| `not a git repository` | Đi vào đúng thư mục project bằng `cd` |
+| `No such file or directory` | Kiểm tra đường dẫn và đặt trong dấu ngoặc kép nếu có khoảng trắng |
+| `nothing to commit, working tree clean` | Chưa có thay đổi mới; kiểm tra đã sửa và lưu đúng file chưa |
+| `Everything up-to-date` | Không có commit mới cần đẩy lên GitHub |
+| `remote origin already exists` | Kiểm tra bằng `git remote -v`; dùng `git remote set-url` nếu địa chỉ sai |
+| `a branch named ... already exists` | Dùng `git switch ten-nhanh` để tiếp tục nhánh cũ, hoặc tạo tên nhánh mới |
+| `syntax error near unexpected token '('` | Đã nhập dòng kết quả hoặc URL có định dạng Markdown; chỉ nhập lệnh và URL thuần |
+| `Permission denied` hoặc lỗi 403 | Kiểm tra tài khoản đang đăng nhập và đã chấp nhận lời mời Collaborator chưa |
+
+Nếu push bị từ chối hoặc xuất hiện xung đột, đọc thông báo để xử lý; không dùng `git push --force` khi chưa hiểu ảnh hưởng đến công việc chung.
+
+## 8. Minh chứng làm việc nhóm
+
+Mỗi thành viên dùng tài khoản riêng và lưu:
+
+- Link commit thể hiện thay đổi của mình.
+- Link pull request.
+- Review của thành viên khác.
+- Ảnh pull request có trạng thái **Merged**.
+
+Ghi các link vào `MINH-CHUNG-NHOM.md`. Những bằng chứng này thể hiện từng người đã đóng góp vào cùng repository.
