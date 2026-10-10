@@ -1,0 +1,13 @@
+:root { font-family: system-ui, sans-serif; color: #17243d; background: #eef3fb; }
+body { margin: 0; padding: 32px 18px; }
+main { max-width: 860px; margin: auto; padding: 32px; border-radius: 22px; background: white; }
+.badge { color: #365bd5; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+h1 { font-size: clamp(28px, 5vw, 44px); line-height: 1.15; }
+p { line-height: 1.7; }
+section { margin-top: 32px; }
+.members { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+article { background: #f3f6fc; padding: 18px; border-radius: 14px; }
+button { background: #365bd5; color: white; border: 0; padding: 12px 20px; border-radius: 8px; cursor: pointer; font: inherit; }
+button:hover { background: #2846ad; }
+button:focus-visible { outline: 3px solid #f2ae30; outline-offset: 3px; }
+footer { margin-top: 36px; color: #59677f; font-size: 13px; line-height: 1.6; }
