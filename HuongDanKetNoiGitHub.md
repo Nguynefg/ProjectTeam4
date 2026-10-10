@@ -187,4 +187,8 @@ Mỗi thành viên dùng tài khoản riêng và lưu:
 - Review của thành viên khác.
 - Ảnh pull request có trạng thái **Merged**.
 
+<<<<<<< HEAD
 Ghi các link vào `MINH-CHUNG-NHOM.md`. Những bằng chứng này thể hiện từng người đã đóng góp vào cùng repository.
+=======
+Ghi các link vào `MINH-CHUNG-NHOM.md`. Những bằng chứng này thể hiện từng người đã đóng góp vào cùng repository.
+>>>>>>> 0d53ffd66463ed15cdcf6574d123a45d47620c54
